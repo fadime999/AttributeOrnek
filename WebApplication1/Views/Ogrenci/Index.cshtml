@@ -1,0 +1,43 @@
+﻿@model WebApplication1.Models.OgrenciModel
+
+@{
+    ViewBag.Title = "Öğrenci Kaydı";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4 w-50">
+        <h2 class="text-center mb-4">Öğrenci Kaydı</h2>
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-info text-center">@TempData["Message"]</div>
+        }
+
+        @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+        {
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Adi, new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(model => model.Adi, new { @class = "form-control", placeholder = "Adınızı girin" })
+                @Html.ValidationMessageFor(model => model.Adi, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Soyadi, new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(model => model.Soyadi, new { @class = "form-control", placeholder = "Soyadınızı girin" })
+                @Html.ValidationMessageFor(model => model.Soyadi, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Bolum, new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(model => model.Bolum, new { @class = "form-control", placeholder = "Bölümünüzü girin" })
+                @Html.ValidationMessageFor(model => model.Bolum, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+            </div>
+        }
+    </div>
+</div>
